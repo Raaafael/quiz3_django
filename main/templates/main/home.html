@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Matrix</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Courier New", monospace;
+            background: #000;
+            color: #00ff41;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background:
+                linear-gradient(rgba(0, 255, 65, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 48px;
+            letter-spacing: 8px;
+            text-shadow: 0 0 15px #00ff41;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #00aa2a;
+            margin-bottom: 45px;
+        }
+
+        .students {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 25px;
+        }
+
+        .student {
+            background: rgba(0, 20, 5, 0.9);
+            border: 1px solid #00ff41;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.15);
+            transition: 0.3s;
+        }
+
+        .student:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.4);
+        }
+
+        .student h2 {
+            margin-top: 0;
+            color: #00ff41;
+            text-shadow: 0 0 8px #00ff41;
+        }
+
+        .info {
+            color: #8aff9b;
+            line-height: 1.8;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border: 1px solid #00ff41;
+            color: #00ff41;
+            font-size: 12px;
+            box-shadow: 0 0 8px rgba(0, 255, 65, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>STUDENT PORTAL</h1>
+
+    <p class="subtitle">
+        > ACCESSING STUDENT DATABASE...
+    </p>
+
+    <div class="students">
+
+        {% for student in students %}
+
+        <div class="student">
+            <h2>{{ student.name }}</h2>
+
+            <div class="info">
+                <p>> COURSE: {{ student.course }}</p>
+                <p>> AGE: {{ student.age }}</p>
+
+                <span class="badge">
+                    STUDENT
+                </span>
+            </div>
+        </div>
+
+        {% empty %}
+
+        <p>> NO STUDENT DATA FOUND.</p>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+</body>
+</html>
